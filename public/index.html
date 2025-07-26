@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBlog Creator - Free WordPress Automation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>AutoBlog Creator</h1>
+            </div>
+            <p class="subtitle">Free WordPress Blog Automation Tool</p>
+        </header>
+
+        <main class="main-content">
+            <div class="blog-form">
+                <h2>Create Your Blog Post</h2>
+                <form id="blogForm">
+                    <div class="form-group">
+                        <label for="subject">Blog Subject/Topic:</label>
+                        <input type="text" id="subject" name="subject" placeholder="e.g., Best Coffee Shops in New York" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tone">Writing Tone:</label>
+                        <select id="tone" name="tone">
+                            <option value="professional">Professional</option>
+                            <option value="casual">Casual</option>
+                            <option value="friendly">Friendly</option>
+                            <option value="informative">Informative</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wordCount">Word Count:</label>
+                        <select id="wordCount" name="wordCount">
+                            <option value="300">300 words</option>
+                            <option value="500" selected>500 words</option>
+                            <option value="800">800 words</option>
+                            <option value="1000">1000 words</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" required>
+                            <option value="Business">Business</option>
+                            <option value="Psychology">Psychology</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Technology">Technology</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wpUrl">WordPress Site URL:</label>
+                        <input type="url" id="wpUrl" name="wpUrl" placeholder="https://yourblog.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wpUsername">WordPress Username:</label>
+                        <input type="text" id="wpUsername" name="wpUsername" placeholder="Your WordPress username">
+                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                            Leave blank to use saved credentials from config
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wpPassword">WordPress Password:</label>
+                        <input type="password" id="wpPassword" name="wpPassword" placeholder="Your WordPress password or Application Password">
+                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                            Leave blank to use saved credentials from config. For WordPress.com sites, use an Application Password. For self-hosted sites, use your regular password.
+                        </small>
+                    </div>
+
+                    <button type="submit" class="generate-btn">
+                        <i class="fas fa-magic"></i>
+                        Generate & Post Blog
+                    </button>
+                </form>
+            </div>
+
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <h2>Generated Blog Preview</h2>
+                <div class="preview-content" id="previewContent"></div>
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" id="editBtn">
+                        <i class="fas fa-edit"></i>
+                        Edit Content
+                    </button>
+                    <button class="btn btn-primary" id="postBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        Post to WordPress
+                    </button>
+                </div>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generating your blog post...</p>
+                <div class="progress-steps">
+                    <div class="step active" id="step1">
+                        <i class="fas fa-pen"></i>
+                        <span>Writing content</span>
+                    </div>
+                    <div class="step" id="step2">
+                        <i class="fas fa-image"></i>
+                        <span>Finding images</span>
+                    </div>
+                    <div class="step" id="step3">
+                        <i class="fas fa-code"></i>
+                        <span>Formatting</span>
+                    </div>
+                    <div class="step" id="step4">
+                        <i class="fas fa-upload"></i>
+                        <span>Posting to WordPress</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by free APIs • No cost involved • 100% Free</p>
+            <div class="credit" style="margin-top:8px; font-size:15px;">
+                made by <a href="https://github.com/binshanvk" target="_blank" style="color:#667eea; text-decoration:underline; font-weight:500;">binshan</a>
+                <a href="https://www.instagram.com/binshanvk/" target="_blank" style="margin-left:10px; color:#E4405F;"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/binshanvk/" target="_blank" style="margin-left:6px; color:#0077B5;"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Configuration file (load local config if available) -->
+    <script src="config.js"></script>
+    <script>
+        // Try to load local configuration
+        const script = document.createElement('script');
+        script.src = 'config.local.js';
+        script.onerror = () => console.log('Using default configuration');
+        document.head.appendChild(script);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 
